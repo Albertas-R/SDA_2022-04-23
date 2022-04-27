@@ -15,7 +15,7 @@ export default App;
 */
 
 import React, { useState, useEffect, useContext } from "react";
-import './App.css';
+import "./App.css";
 
 import { Title } from "./Title";
 import { Button } from "./Button";
@@ -25,6 +25,11 @@ import { ThemeContext, Theme } from "./Theme";
 export const App = () => {
   const [users, setUsers] = useState([]);
   const [theme, setTheme] = useState(Theme.light);
+  const [showList, setShowList] = useState(false);
+
+  const toggleList = () => {
+    setShowList(!showList);
+  };
 
   const fetchUsers = async () => {
     const responseFetch = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -33,15 +38,19 @@ export const App = () => {
     console.log(users);
     console.log(usersFromFetch);
 
-    // setUsers(usersFromFetch);
-    setUsers((users) => (users.length !== usersFromFetch.length ? usersFromFetch : users));
+    setUsers(usersFromFetch);
+  };
+
+  const fetchAndToggleUserList = async () => {
+    await fetchUsers();
+    toggleList();
   };
 
   // useEffect(() => {
   //   fetchUsers();
   // }, []);
 
-  const backgroundTheme = useContext(ThemeContext);
+  // const backgroundTheme = useContext(ThemeContext);
 
   const handleTheme = () => {
     console.log("TOGGLE THEME button click");
@@ -52,13 +61,15 @@ export const App = () => {
   return (
     <ThemeContext.Provider value={theme}>
       <div className="react-div" style={theme}>
-        <Title />
-        <Button onClick={fetchUsers}>FETCH USERS</Button>
-        <Button onClick={fetchUsers} email={{ users }}>
-          FETCH USERS EMAIL
-        </Button>
+        <Title>React App (My Task)</Title>
+
+        <Button onClick={fetchAndToggleUserList}>FETCH USERS</Button>
+
+        <Button onClick={fetchAndToggleUserList}>FETCH USERS EMAIL</Button>
+
         <Button onClick={handleTheme}>TOGGLE THEME</Button>
-        <List users={users} />
+
+        {showList && <List users={users} showName={true} showEmail={true} />}
       </div>
     </ThemeContext.Provider>
   );

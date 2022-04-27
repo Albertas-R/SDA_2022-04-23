@@ -1,5 +1,5 @@
 import React from "react";
 
-export const Title = () => {
-  return <h1>React App (My Task)</h1>;
+export const Title = (props) => {
+  return <h1>{props.children}</h1>;
 };
