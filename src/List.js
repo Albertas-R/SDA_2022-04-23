@@ -1,5 +1,3 @@
-import React from "react";
-
 // export const List = ({ users }) => {
 //   return (
 //     <ul>
@@ -14,7 +12,11 @@ import React from "react";
 //   );
 // };
 
+import React from "react";
+
 export const List = ({ users, showName, showEmail }) => {
+  console.log(users);
+
   return (
     <ul>
       {users.map(({ name, id, email = null }) => {
