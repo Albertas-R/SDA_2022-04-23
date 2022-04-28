@@ -79,6 +79,22 @@ export const App = () => {
 };
 */
 
+/*
+/////////////////////////////////////////////////////////////////////
+
+UŽDUOTIS
+
+Iš esmės norit puslapio su:
+
+* pavadinimu
+
+* dviem mygtukais, vieną paspaudus fetchinam userius iš https://jsonplaceholder.typicode.com/users ir įdedam į apatinį listą (naudokit state useriams saugot), kitas pakeisti puslapio temai (stiliams) naudokit contextą (panašiai kaip https://github.com/vladasko-g/sda-react/tree/react-2-context )
+
+* apačioj atsiranda listas su userneimais (jeigu jie pafetchinti)
+
+/////////////////////////////////////////////////////////////////////
+*/
+
 import React, { useState, useEffect, useContext } from "react";
 import "./App.css";
 
