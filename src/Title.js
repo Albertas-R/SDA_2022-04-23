@@ -1,5 +1,10 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+
+import { ThemeContext, Theme } from "./Theme";
 
 export const Title = (props) => {
-  return <h1>{props.children}</h1>;
+  const backgroundTheme = useContext(ThemeContext);
+  console.log(backgroundTheme);
+
+  return <h1 style={{ backgroundColor: backgroundTheme.backgroundColor }}>{props.children}</h1>;
 };
